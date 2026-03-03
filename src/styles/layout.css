@@ -1,0 +1,23 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.visualizer-area {
+  flex: 1;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-panel {
+  width: 320px;
+  background-color: var(--bg-secondary);
+  border-left: 1px solid var(--border-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
