@@ -12,6 +12,12 @@
   justify-content: center;
 }
 
+.visualizer-area canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .control-panel {
   width: 320px;
   background-color: var(--bg-secondary);
