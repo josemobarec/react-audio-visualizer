@@ -1,18 +1,32 @@
-import { getAudioContext } from "../audio/audioEngine";
-import { initializeAudio } from "../audio/audioEngine";
-import { playAudio } from "../audio/audioEngine";
+import {
+  getAudioContext,
+  initializeAudio,
+  playAudio,
+  pauseAudio,
+  isPlaying,
+  setVolume
+} from "../audio/audioEngine";
 
-function ControlPanel() {
-  
+import { useState } from "react";
+
+function ControlPanel({ mode, setMode }) {
+  const [playing, setPlaying] = useState(false);
+
   function handlePlay() {
-  const context = getAudioContext();
+    const context = getAudioContext();
 
-  if (context.state === "suspended") {
-    context.resume();
+    if (context.state === "suspended") {
+      context.resume();
+    }
+
+    if (isPlaying()) {
+      pauseAudio();
+      setPlaying(false);
+    } else {
+      playAudio();
+      setPlaying(true);
+    }
   }
-
-  playAudio();
-}
 
   return (
     <>
@@ -20,18 +34,32 @@ function ControlPanel() {
 
       <label>
         Select Visualizer
-        <select>
+        <select
+          value={mode}
+          onChange={(e) => setMode(e.target.value)}
+        >
           <option value="bars">Bars</option>
           <option value="radial">Radial</option>
           <option value="wave">Wave</option>
         </select>
       </label>
 
-      <button onClick={handlePlay}>Play / Pause</button>
+      <button onClick={handlePlay}>
+        {playing ? "Pause" : "Play"}
+      </button>
 
       <label>
         Volume
-        <input type="range" min="0" max="100" />
+        <input
+          type="range"
+          min="0"
+          max="100"
+          defaultValue="100"
+          onChange={(e) => {
+            const normalized = e.target.value / 100;
+            setVolume(normalized);
+          }}
+        />
       </label>
 
       <input
@@ -42,10 +70,11 @@ function ControlPanel() {
 
           if (file) {
             initializeAudio(file);
+            setPlaying(false);
             console.log("Audio file loaded:", file.name);
           }
         }}
-/>
+      />
     </>
   );
 }

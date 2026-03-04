@@ -1,23 +1,40 @@
 import { useRef, useEffect } from "react";
 import { getAnalyser } from "../audio/audioEngine";
+import { drawBars } from "../visualizers/barsVisualizer";
+import { drawRadial } from "../visualizers/radialVisualizer";
 
-function VisualizerContainer() {
+function VisualizerContainer({ mode }) {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
+  const modeRef = useRef(mode);
+
+  useEffect(() => {
+    modeRef.current = mode;
+  }, [mode]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    function resize() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+    function setupCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+
+      canvas.style.width = rect.width + "px";
+      canvas.style.height = rect.height + "px";
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
     }
 
-    resize();
-    window.addEventListener("resize", resize);
+    setupCanvas();
+    window.addEventListener("resize", setupCanvas);
 
     let peaks = [];
+    let dataArray = null;
 
     function draw() {
       const analyser = getAnalyser();
@@ -27,61 +44,24 @@ function VisualizerContainer() {
         return;
       }
 
-      const bufferLength = analyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
+      if (!dataArray) {
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
+      }
 
       analyser.getByteFrequencyData(dataArray);
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
 
-      const visibleBars = 64;
-      const barWidth = canvas.width / (visibleBars * 2);
-      const center = canvas.width / 2;
+      ctx.clearRect(0, 0, width, height);
 
-      for (let i = 0; i < visibleBars; i++) {
-        const value = dataArray[i];
-        const percent = value / 255;
-        const targetHeight = canvas.height * percent;
+      // 🔥 Dispatcher sin reiniciar efecto
+      if (modeRef.current === "bars") {
+        drawBars({ ctx, dataArray, width, height, peaks });
+      }
 
-        // 🔥 Peak memory
-        if (!peaks[i]) peaks[i] = 0;
-
-        if (targetHeight > peaks[i]) {
-          peaks[i] = targetHeight;
-        } else {
-          peaks[i] *= 0.92; // velocidad de caída
-        }
-
-        const barHeight = peaks[i];
-
-        const gradient = ctx.createLinearGradient(
-          0,
-          canvas.height - barHeight,
-          0,
-          canvas.height
-        );
-
-        gradient.addColorStop(0, "#ff4ecd");
-        gradient.addColorStop(0.5, "#8a6cff");
-        gradient.addColorStop(1, "#3a86ff");
-
-        ctx.fillStyle = gradient;
-        ctx.shadowBlur = 25;
-        ctx.shadowColor = "#8a6cff";
-
-        ctx.fillRect(
-          center + i * barWidth,
-          canvas.height - barHeight,
-          barWidth * 0.9,
-          barHeight
-        );
-
-        ctx.fillRect(
-          center - (i + 1) * barWidth,
-          canvas.height - barHeight,
-          barWidth * 0.9,
-          barHeight
-        );
+      if (modeRef.current === "radial") {
+        drawRadial({ ctx, dataArray, width, height, peaks });
       }
 
       animationRef.current = requestAnimationFrame(draw);
@@ -91,9 +71,9 @@ function VisualizerContainer() {
 
     return () => {
       cancelAnimationFrame(animationRef.current);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", setupCanvas);
     };
-  }, []);
+  }, []); // 👈 SIN dependencia de mode
 
   return <canvas ref={canvasRef} />;
 }

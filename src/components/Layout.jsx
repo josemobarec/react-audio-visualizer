@@ -1,15 +1,13 @@
 import "../styles/layout.css";
-import VisualizerContainer from "./VisualizerContainer";
-import ControlPanel from "./ControlPanel";
 
-function Layout() {
+function Layout({ children }) {
   return (
     <div className="app-container">
       <div className="visualizer-area">
-        <VisualizerContainer />
+        {children[0]}
       </div>
       <div className="control-panel">
-        <ControlPanel />
+        {children[1]}
       </div>
     </div>
   );

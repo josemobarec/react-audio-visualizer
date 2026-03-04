@@ -58,3 +58,13 @@ export function pauseAudio() {
     audioElement.pause();
   }
 }
+
+export function isPlaying() {
+  return audioElement ? !audioElement.paused : false;
+}
+
+export function setVolume(value) {
+  if (audioElement) {
+    audioElement.volume = value;
+  }
+}
