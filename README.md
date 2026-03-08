@@ -8,6 +8,14 @@ https://josemobarec.github.io/react-audio-visualizer/
 
 ---
 
+## 📄 Technical Documentation
+
+Full technical documentation available here:
+
+👉 [View Documentation](docs/Technical_Documentation_React_Audio_Visualizer.pdf)
+
+---
+
 ## 🚀 Propósito del Proyecto
 
 El objetivo de este proyecto es demostrar:
