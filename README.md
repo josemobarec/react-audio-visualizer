@@ -57,17 +57,17 @@ El sistema analiza los datos de audio en cada frame y actualiza el canvas dinám
 ---
 
 ## 🏗 Arquitectura del Proyecto
-src/
-├── audio/
-│ └── audioEngine.js
-├── components/
-│ ├── Layout.jsx
-│ ├── ControlPanel.jsx
-│ └── VisualizerContainer.jsx
-├── visualizers/
-│ ├── barsVisualizer.js
-│ ├── radialVisualizer.js
-│ └── waveVisualizer.js
+src/<br>
+├── audio/<br>
+│ └── audioEngine.js<br>
+├── components/<br>
+│ ├── Layout.jsx<br>
+│ ├── ControlPanel.jsx<br>
+│ └── VisualizerContainer.jsx<br>
+├── visualizers/<br>
+│ ├── barsVisualizer.js<br>
+│ ├── radialVisualizer.js<br>
+│ └── waveVisualizer.js<br>
 
 
 La arquitectura separa:
