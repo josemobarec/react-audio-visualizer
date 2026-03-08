@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import { getAnalyser } from "../audio/audioEngine";
 import { drawBars } from "../visualizers/barsVisualizer";
 import { drawRadial } from "../visualizers/radialVisualizer";
+import { drawWave } from "../visualizers/waveVisualizer";
 
 function VisualizerContainer({ mode }) {
   const canvasRef = useRef(null);
@@ -55,13 +56,16 @@ function VisualizerContainer({ mode }) {
 
       ctx.clearRect(0, 0, width, height);
 
-      // 🔥 Dispatcher sin reiniciar efecto
       if (modeRef.current === "bars") {
         drawBars({ ctx, dataArray, width, height, peaks });
       }
 
       if (modeRef.current === "radial") {
         drawRadial({ ctx, dataArray, width, height, peaks });
+      }
+
+      if (modeRef.current === "wave") {
+        drawWave({ ctx, analyser, width, height });
       }
 
       animationRef.current = requestAnimationFrame(draw);
