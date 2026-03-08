@@ -1,16 +1,113 @@
-# React + Vite
+# 🎵 React Audio Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Visualizador de música en tiempo real desarrollado con **React**, **Web Audio API** y **HTML5 Canvas**.  
+El proyecto permite analizar frecuencias de audio en vivo y representarlas mediante diferentes modos de visualización dinámicos y reactivos.
 
-Currently, two official plugins are available:
+🔗 **Demo en vivo:**  
+https://josemobarec.github.io/react-audio-visualizer/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Propósito del Proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El objetivo de este proyecto es demostrar:
 
-## Expanding the ESLint configuration
+- Dominio de la Web Audio API.
+- Manipulación avanzada de Canvas 2D.
+- Arquitectura modular en React.
+- Sincronización en tiempo real entre audio y renderizado.
+- Optimización de animaciones mediante `requestAnimationFrame`.
+- Deploy profesional con GitHub Pages.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧠 Tecnologías Utilizadas
+
+- React
+- Vite
+- Web Audio API
+- HTML5 Canvas
+- JavaScript (ES Modules)
+- GitHub Pages
+
+---
+
+## 🎛 Modos de Visualización
+
+### 🔹 Bars
+Representación simétrica del espectro de frecuencias con efecto de “peak hold”.
+
+### 🔹 Radial
+Visualización circular basada en energía espectral.
+
+### 🔹 Wave
+Representación temporal de la forma de onda en tiempo real.
+
+---
+
+## 🎮 Cómo Usarlo
+
+1. Presionar **Choose File** y cargar un archivo de audio.
+2. Presionar **Play** para iniciar reproducción.
+3. Seleccionar el modo de visualización.
+4. Ajustar volumen según necesidad.
+
+El sistema analiza los datos de audio en cada frame y actualiza el canvas dinámicamente.
+
+---
+
+## 🏗 Arquitectura del Proyecto
+src/
+├── audio/
+│ └── audioEngine.js
+├── components/
+│ ├── Layout.jsx
+│ ├── ControlPanel.jsx
+│ └── VisualizerContainer.jsx
+├── visualizers/
+│ ├── barsVisualizer.js
+│ ├── radialVisualizer.js
+│ └── waveVisualizer.js
+
+
+La arquitectura separa:
+
+- Motor de audio
+- Lógica de render
+- Componentes de interfaz
+- Modos de visualización
+
+Esto permite escalabilidad y fácil extensión del sistema.
+
+---
+
+## ⚡ Rendimiento
+
+- Uso de `requestAnimationFrame`
+- Renderizado optimizado
+- Reutilización de buffers
+- Escalado según `devicePixelRatio`
+
+---
+
+## 📈 Posibles Mejoras Futuras
+
+- Visualizador con partículas dinámicas
+- Modo fullscreen
+- Exportación de grabación visual
+- Ajuste dinámico de sensibilidad
+- Soporte para entrada de micrófono
+- Control de colores personalizados
+- Modo 3D con WebGL
+
+---
+
+## 👨‍💻 Autor
+
+Desarrollado por **JLMB**  
+
+---
+
+## 📄 Licencia
+
+Este proyecto se distribuye bajo licencia MIT.
