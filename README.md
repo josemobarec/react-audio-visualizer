@@ -8,6 +8,7 @@ https://josemobarec.github.io/react-audio-visualizer/
 
 ---
 
+
 ## 📄 Technical Documentation
 
 Full technical documentation available here:
