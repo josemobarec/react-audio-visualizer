@@ -1,23 +1,23 @@
-# 🎵 React Audio Visualizer
+# React Audio Visualizer
 
 Visualizador de música en tiempo real desarrollado con **React**, **Web Audio API** y **HTML5 Canvas**.  
 El proyecto permite analizar frecuencias de audio en vivo y representarlas mediante diferentes modos de visualización dinámicos y reactivos.
 
-🔗 **Demo en vivo:**  
+**Demo en vivo:**  
 https://josemobarec.github.io/react-audio-visualizer/
 
 ---
 
 
-## 📄 Technical Documentation
+## Technical Documentation
 
 Full technical documentation available here:
 
-👉 [View Documentation](docs/Technical_Documentation_React_Audio_Visualizer.pdf)
+[View Documentation](docs/Technical_Documentation_React_Audio_Visualizer.pdf)
 
 ---
 
-## 🚀 Propósito del Proyecto
+## Propósito del Proyecto
 
 El objetivo de este proyecto es demostrar:
 
@@ -30,7 +30,7 @@ El objetivo de este proyecto es demostrar:
 
 ---
 
-## 🧠 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - React
 - Vite
@@ -41,20 +41,20 @@ El objetivo de este proyecto es demostrar:
 
 ---
 
-## 🎛 Modos de Visualización
+## Modos de Visualización
 
-### 🔹 Bars
+### Bars
 Representación simétrica del espectro de frecuencias con efecto de “peak hold”.
 
-### 🔹 Radial
+### Radial
 Visualización circular basada en energía espectral.
 
-### 🔹 Wave
+### Wave
 Representación temporal de la forma de onda en tiempo real.
 
 ---
 
-## 🎮 Cómo Usarlo
+## Cómo Usarlo
 
 1. Presionar **Choose File** y cargar un archivo de audio.
 2. Presionar **Play** para iniciar reproducción.
@@ -65,7 +65,7 @@ El sistema analiza los datos de audio en cada frame y actualiza el canvas dinám
 
 ---
 
-## 🏗 Arquitectura del Proyecto
+## Arquitectura del Proyecto
 src/<br>
 ├── audio/<br>
 │ └── audioEngine.js<br>
@@ -90,7 +90,7 @@ Esto permite escalabilidad y fácil extensión del sistema.
 
 ---
 
-## ⚡ Rendimiento
+## Rendimiento
 
 - Uso de `requestAnimationFrame`
 - Renderizado optimizado
@@ -99,7 +99,7 @@ Esto permite escalabilidad y fácil extensión del sistema.
 
 ---
 
-## 📈 Posibles Mejoras Futuras
+## Posibles Mejoras Futuras
 
 - Visualizador con partículas dinámicas
 - Modo fullscreen
@@ -111,12 +111,12 @@ Esto permite escalabilidad y fácil extensión del sistema.
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 Desarrollado por **JLMB**  
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto se distribuye bajo licencia MIT.
